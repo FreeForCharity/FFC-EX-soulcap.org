@@ -30,10 +30,30 @@ export const EXTERNAL = {
   donate: 'https://checkout.square.site/merchant/MLS2NWJYC0DMG/checkout/BDXZWDTKTTTK3TI4L4LWWW2S',
   /** Public events calendar — Google Calendar (calendar@soulcap.org). */
   googleCalendar: 'https://calendar.google.com/calendar/u/0?cid=Y2FsZW5kYXJAc291bGNhcC5vcmc',
+  /** Embeddable version of the public calendar (avoids hardcoding stale events). */
+  googleCalendarEmbed:
+    'https://calendar.google.com/calendar/embed?src=calendar%40soulcap.org&ctz=America%2FVancouver',
   /** Social profiles. */
   linkedin: 'https://www.linkedin.com/company/soulcap/',
   linkedinFoundation: 'https://www.linkedin.com/company/soulcapfoundation/',
   youtube: 'https://www.youtube.com/@initiativesoulcap',
+} as const
+
+/**
+ * HubSpot contact form configuration.
+ *
+ * The source site loads HubSpot for portal 47034399 (via js.hs-scripts.com).
+ * The specific form GUID is not published in the source HTML (the form is
+ * injected client-side by the HubSpot WordPress plugin), so it must be taken
+ * from the HubSpot account and supplied via NEXT_PUBLIC_HUBSPOT_FORM_ID — see
+ * the external-dependency tracking issue. Until then the form falls back to a
+ * mailto so the page stays functional.
+ */
+export const HUBSPOT = {
+  portalId: process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID || '47034399',
+  formId: process.env.NEXT_PUBLIC_HUBSPOT_FORM_ID || '',
+  region: process.env.NEXT_PUBLIC_HUBSPOT_REGION || 'na1',
+  fallbackEmail: 'info@soulcap.org',
 } as const
 
 export interface NavItem {

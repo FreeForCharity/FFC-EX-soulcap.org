@@ -29,14 +29,6 @@ const achievements = [
   },
 ]
 
-const events = [
-  { title: 'SOULCAP Bioinformatics (Time 1)', when: 'Mon, Jun 1 2026 · 13:00' },
-  { title: 'Outreach meeting', when: 'Thu, Jun 4 2026 · 13:00' },
-  { title: 'Gran/Mono Annotation meeting', when: 'Wed, Jun 10 2026 · 14:00' },
-  { title: 'SOULCAP: Leads (Invite Only)', when: 'Fri, Jun 12 2026 · 18:30' },
-  { title: 'SOULCAP Bioinformatics (Time 2)', when: 'Mon, Jun 15 2026 · 19:00' },
-]
-
 const HomePage: React.FC = () => {
   return (
     <main className="pt-[84px]">
@@ -204,16 +196,17 @@ const HomePage: React.FC = () => {
             Events
           </h2>
           <p className="mt-4 text-center text-gray-600">
-            Join us for our upcoming events to stay updated on the SOULCAP project.
+            Join us for our upcoming events to stay updated on the SOULCAP project. Live events are
+            pulled directly from our public calendar.
           </p>
-          <ul className="mt-8 divide-y divide-gray-100 rounded-lg border border-gray-100">
-            {events.map((e) => (
-              <li key={e.title} className="flex items-center justify-between gap-4 px-5 py-4">
-                <span className="font-medium text-gray-800">{e.title}</span>
-                <span className="whitespace-nowrap text-sm text-gray-500">{e.when}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="mt-8 overflow-hidden rounded-lg border border-gray-100">
+            <iframe
+              title="SOULCAP public events calendar"
+              src={EXTERNAL.googleCalendarEmbed}
+              className="h-[480px] w-full"
+              loading="lazy"
+            />
+          </div>
           <div className="mt-8 text-center">
             <a
               href={EXTERNAL.googleCalendar}

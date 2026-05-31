@@ -22,7 +22,10 @@ const Header: React.FC = () => {
 
   const handleLinkClick = () => setIsMobileMenuOpen(false)
 
-  const isActive = (path: string) => pathname === path || pathname?.startsWith(`${path}/`)
+  const isActive = (path: string) => {
+    if (path === '/') return pathname === '/'
+    return pathname === path || pathname?.startsWith(`${path}/`)
+  }
 
   return (
     <header

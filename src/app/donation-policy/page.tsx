@@ -1,86 +1,54 @@
 import type { Metadata } from 'next'
+import { LegalArticle, LegalHeading } from '@/components/content-page'
+import { SITE, EXTERNAL, HUBSPOT } from '@/lib/soulcap'
 
 export const metadata: Metadata = {
-  title: 'Donation Policy | Free For Charity',
-  description: 'Donation Policy for Free For Charity website',
+  title: 'Donation Policy',
+  description: 'How donations to SOULCAP Foundation are processed, acknowledged, and refunded.',
 }
 
 export default function DonationPolicy() {
   return (
-    <main className="ffc-container py-16">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="font-[var(--font-faustina)] text-[48px] leading-[60px] mb-8">
-          Donation Policy
-        </h1>
+    <LegalArticle title="Donation Policy" effectiveDate="2026-05-31">
+      <p>
+        {SITE.legalName} is a US 501(c)(3) non-profit organization. This policy describes how
+        donations are processed and handled.
+      </p>
 
-        <div className="prose max-w-none font-[var(--font-lato)] text-[18px] leading-[28px]">
-          <p>
-            <strong>Effective Date:</strong> January 1, 2024
-          </p>
+      <LegalHeading>How to donate</LegalHeading>
+      <p>
+        Donations are processed securely through{' '}
+        <a href={EXTERNAL.donate} target="_blank" rel="noopener noreferrer" className="underline">
+          Square
+        </a>
+        . SOULCAP does not collect or store your full payment-card information; it is handled by
+        Square under its own terms and privacy policy.
+      </p>
 
-          <h2 className="font-[var(--font-faustina)] text-[32px] leading-[40px] mt-8 mb-4">
-            Tax Deductibility
-          </h2>
-          <p>
-            Free For Charity is a qualified 501(c)(3) nonprofit organization (EIN: 46-2471893).
-            Donations are tax-deductible to the full extent allowed by law.
-          </p>
+      <LegalHeading>Receipts &amp; tax deductibility</LegalHeading>
+      <p>
+        Proof of donation is provided upon payment. As SOULCAP is a 501(c)(3) organization,
+        donations may be tax-deductible to the extent allowed by law; please consult your tax
+        advisor. No goods or services are provided in exchange for a donation unless explicitly
+        stated.
+      </p>
 
-          <h2 className="font-[var(--font-faustina)] text-[32px] leading-[40px] mt-8 mb-4">
-            Use of Donations
-          </h2>
-          <p>
-            Donations support our mission to reduce costs and increase revenues for nonprofits by
-            providing:
-          </p>
-          <ul>
-            <li>Free domain registration and hosting services</li>
-            <li>Technology consultation and support</li>
-            <li>Volunteer coordination and training</li>
-            <li>Administrative costs necessary to operate our programs</li>
-          </ul>
+      <LegalHeading>Use of funds</LegalHeading>
+      <p>
+        Donations support SOULCAP&apos;s mission to build open, FAIR, and AI-ready standards for
+        immune cell identification and annotation, including reference datasets, open-source tools,
+        and community programs.
+      </p>
 
-          <h2 className="font-[var(--font-faustina)] text-[32px] leading-[40px] mt-8 mb-4">
-            Donation Processing
-          </h2>
-          <p>
-            Donations are processed securely through our payment partners. You will receive a
-            receipt for tax purposes via email after your donation is processed.
-          </p>
+      <LegalHeading>Refunds</LegalHeading>
+      <p>
+        Donations are generally non-refundable. If you believe a donation was made in error or an
+        incorrect amount was charged, contact us promptly at {HUBSPOT.fallbackEmail} and we will
+        review the request.
+      </p>
 
-          <h2 className="font-[var(--font-faustina)] text-[32px] leading-[40px] mt-8 mb-4">
-            Refund Policy
-          </h2>
-          <p>
-            We generally do not provide refunds for donations. However, if you believe an error has
-            occurred, please contact us within 30 days of your donation.
-          </p>
-
-          <h2 className="font-[var(--font-faustina)] text-[32px] leading-[40px] mt-8 mb-4">
-            Privacy
-          </h2>
-          <p>
-            Donor information is kept confidential and will not be shared with third parties except
-            as required by law.
-          </p>
-
-          <h2 className="font-[var(--font-faustina)] text-[32px] leading-[40px] mt-8 mb-4">
-            Contact Us
-          </h2>
-          <p>For questions about donations or this policy, please contact us at:</p>
-          <p>
-            Email:{' '}
-            <a
-              href="mailto:clarkemoyer@freeforcharity.org"
-              className="text-primary hover:underline"
-            >
-              clarkemoyer@freeforcharity.org
-            </a>
-            <br />
-            Phone: (520) 222-8104
-          </p>
-        </div>
-      </div>
-    </main>
+      <LegalHeading>Contact</LegalHeading>
+      <p>Questions about donations? Email {HUBSPOT.fallbackEmail}.</p>
+    </LegalArticle>
   )
 }

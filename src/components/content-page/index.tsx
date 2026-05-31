@@ -55,3 +55,47 @@ export function Section({
 export function PageShell({ children }: { children: React.ReactNode }) {
   return <main className="pt-[84px]">{children}</main>
 }
+
+/**
+ * Layout for legal/policy pages. Renders a title, effective date, a
+ * "draft pending review" notice, and prose children with sensible defaults.
+ */
+export function LegalArticle({
+  title,
+  effectiveDate,
+  children,
+}: {
+  title: string
+  effectiveDate: string
+  children: React.ReactNode
+}) {
+  return (
+    <PageShell>
+      <div className="mx-auto max-w-3xl px-4 py-14">
+        <h1 className="text-3xl font-bold" style={{ color: BRAND.primary }}>
+          {title}
+        </h1>
+        <p className="mt-2 text-sm text-gray-500">Effective date: {effectiveDate}</p>
+        <p
+          className="mt-4 rounded-md border-l-4 bg-gray-50 p-3 text-sm text-gray-600"
+          style={{ borderColor: BRAND.accent }}
+        >
+          Draft for review. This policy is a working draft for SOULCAP Foundation and does not
+          constitute legal advice; it should be reviewed by qualified counsel before publication.
+        </p>
+        <div className="legal-prose mt-8 space-y-4 text-[16px] leading-relaxed text-gray-700">
+          {children}
+        </div>
+      </div>
+    </PageShell>
+  )
+}
+
+/** Section heading inside a LegalArticle. */
+export function LegalHeading({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="mt-8 text-xl font-semibold" style={{ color: BRAND.primary }}>
+      {children}
+    </h2>
+  )
+}
