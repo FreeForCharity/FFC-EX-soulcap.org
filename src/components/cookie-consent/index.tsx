@@ -34,7 +34,7 @@ export default function CookieConsent() {
   const [showPreferences, setShowPreferences] = useState(false)
   const [preferences, setPreferences] = useState<CookiePreferences>({
     necessary: true, // Always true, cannot be changed
-    functional: true, // Always true, cannot be changed - includes Square donation checkout
+    functional: true, // Always true, cannot be changed (remembers site preferences, e.g. your cookie choices)
     analytics: false,
     marketing: false,
   })
@@ -303,7 +303,7 @@ export default function CookieConsent() {
   const handleDeclineAll = () => {
     const onlyNecessary: CookiePreferences = {
       necessary: true,
-      functional: true, // Functional cookies (Square) are always enabled for donations
+      functional: true, // Always on: core functional cookies (remembers site preferences)
       analytics: false,
       marketing: false,
     }
@@ -409,11 +409,13 @@ export default function CookieConsent() {
                 </div>
               </div>
               <p className="text-sm text-gray-600 mb-2">
-                These cookies enable enhanced functionality and features that are essential for our
-                core services. This includes our donation processing, which requires cookies to
-                function properly.
+                These cookies remember your preferences — such as your cookie choices — and enable
+                core site functionality. They do not track you across other sites.
               </p>
-              <p className="text-xs text-gray-500">Services: Square (Donation Processing)</p>
+              <p className="text-xs text-gray-500">
+                Note: donations are processed off-site by Square on its own domain, subject to
+                Square&apos;s own cookie practices.
+              </p>
             </div>
 
             {/* Analytics Cookies */}
