@@ -9,10 +9,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const routes = ['/', ...NAV.map((n) => n.path), ...LEGAL_LINKS.map((l) => l.path)]
 
-  return routes.map((path) => ({
-    url: `${baseUrl}${path}`,
-    lastModified: now,
-    changeFrequency: path === '/' ? 'weekly' : 'monthly',
-    priority: path === '/' ? 1 : 0.7,
-  }))
+  return routes.map((path) => {
+    // Match the deployed canonical URLs (trailingSlash: true).
+    const canonical = path === '/' ? '/' : `${path}/`
+    return {
+      url: `${baseUrl}${canonical}`,
+      lastModified: now,
+      changeFrequency: path === '/' ? 'weekly' : 'monthly',
+      priority: path === '/' ? 1 : 0.7,
+    }
+  })
 }
