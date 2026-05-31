@@ -64,9 +64,12 @@ jobs:
       - name: Build with Next.js
         run: npm run build
         env:
-          # Set basePath for GitHub Pages deployment
-          # This ensures images and assets work correctly at the subpath
-          NEXT_PUBLIC_BASE_PATH: /FFC_Single_Page_Template
+          # Set basePath for GitHub Pages deployment.
+          # Deploying to the DEFAULT GitHub Pages location for this repo:
+          #   https://freeforcharity.github.io/FFC-EX-soulcap.org/
+          # The basePath must match the repository name so assets/links resolve
+          # at the project-pages subpath. (No custom subdomain/apex domain yet.)
+          NEXT_PUBLIC_BASE_PATH: /FFC-EX-soulcap.org
 
       - name: Upload artifact for Pages
         uses: actions/upload-pages-artifact@v4

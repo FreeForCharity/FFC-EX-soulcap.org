@@ -19,7 +19,7 @@ import {
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ffcworkingsite1.org'),
+  metadataBase: new URL('https://freeforcharity.github.io/FFC-EX-soulcap.org'),
   title: {
     default: 'Free For Charity | Reduce Costs, Increase Impact',
     template: '%s | Free For Charity',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: 'https://ffcworkingsite1.org/',
+    url: 'https://freeforcharity.github.io/FFC-EX-soulcap.org/',
     siteName: 'Free For Charity',
     title: 'Free For Charity | Reduce Costs, Increase Impact',
     description:
