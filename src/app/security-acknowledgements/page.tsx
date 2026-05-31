@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { LegalArticle, LegalHeading } from '@/components/content-page'
-import { HUBSPOT } from '@/lib/soulcap'
+import { SITE } from '@/lib/soulcap'
 
 export const metadata: Metadata = {
   title: 'Security Acknowledgements',
@@ -19,7 +19,7 @@ export default function SecurityAcknowledgements() {
       <LegalHeading>Hall of thanks</LegalHeading>
       <p>
         No disclosures have been recognized yet. If you have responsibly reported an issue and would
-        like to be credited here, let us know at {HUBSPOT.fallbackEmail}.
+        like to be credited here, let us know at {SITE.email}.
       </p>
     </LegalArticle>
   )

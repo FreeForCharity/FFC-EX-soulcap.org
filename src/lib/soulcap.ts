@@ -17,6 +17,8 @@ export const SITE = {
     'SOULCAP Foundation is a global 501(c)(3) non-profit building a universal standard for immune cell identification and annotation in cytometry — advancing open, FAIR, and AI-ready data.',
   // Operating address (from the source Contact page).
   address: 'SOULCAP Foundation, Dover, Delaware, USA (operating globally)',
+  // Public contact email (from the source Contact page).
+  email: 'admin@soulcap.org',
   copyrightHolder: 'SOULCAP',
 } as const
 
@@ -37,23 +39,6 @@ export const EXTERNAL = {
   linkedin: 'https://www.linkedin.com/company/soulcap/',
   linkedinFoundation: 'https://www.linkedin.com/company/soulcapfoundation/',
   youtube: 'https://www.youtube.com/@initiativesoulcap',
-} as const
-
-/**
- * HubSpot contact form configuration.
- *
- * The source site loads HubSpot for portal 47034399 (via js.hs-scripts.com).
- * The specific form GUID is not published in the source HTML (the form is
- * injected client-side by the HubSpot WordPress plugin), so it must be taken
- * from the HubSpot account and supplied via NEXT_PUBLIC_HUBSPOT_FORM_ID — see
- * the external-dependency tracking issue. Until then the form falls back to a
- * mailto so the page stays functional.
- */
-export const HUBSPOT = {
-  portalId: process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID || '47034399',
-  formId: process.env.NEXT_PUBLIC_HUBSPOT_FORM_ID || '',
-  region: process.env.NEXT_PUBLIC_HUBSPOT_REGION || 'na1',
-  fallbackEmail: 'info@soulcap.org',
 } as const
 
 export interface NavItem {
