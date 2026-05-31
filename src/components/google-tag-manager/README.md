@@ -1,6 +1,6 @@
 # Google Tag Manager (GTM) Component
 
-This component implements Google Tag Manager integration for the Free For Charity website.
+This component implements Google Tag Manager integration for the SOULCAP website.
 
 ## Overview
 
@@ -113,10 +113,10 @@ Test coverage includes:
 
 ### GitHub Pages Deployment
 
-The site automatically deploys to GitHub Pages via `.github/workflows/nextjs.yml`. The GTM implementation works on both:
+The site automatically deploys to GitHub Pages via `.github/workflows/deploy.yml`. The GTM implementation works on:
 
-1. **Custom domain**: https://www.ffcworkingsite1.org
-2. **GitHub Pages**: https://freeforcharity.github.io/FFC_Single_Page_Template/
+1. **GitHub Pages (default)**: https://freeforcharity.github.io/FFC-EX-soulcap.org/
+2. **Custom domain**: to be configured later (no subdomain/apex domain yet)
 
 The GTM ID is hardcoded in the component, so no additional configuration is needed for deployment.
 

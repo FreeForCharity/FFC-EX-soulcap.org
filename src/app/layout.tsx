@@ -62,7 +62,7 @@ export const metadata: Metadata = {
         url: '/web-app-manifest-512x512.png',
         width: 512,
         height: 512,
-        alt: 'Free For Charity',
+        alt: 'SOULCAP',
       },
     ],
   },
