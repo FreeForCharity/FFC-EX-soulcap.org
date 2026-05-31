@@ -82,6 +82,53 @@ export const LEGAL_LINKS: NavItem[] = [
   { label: 'Security Acknowledgements', path: '/security-acknowledgements' },
 ]
 
+export interface Leader {
+  name: string
+  title: string
+  focus: string
+  linkedin: string
+}
+
+/** Board / leadership roster (migrated from the source About page). */
+export const LEADERSHIP: Leader[] = [
+  {
+    name: 'Ryan Brinkman',
+    title: 'Board Chair · President',
+    focus: 'Strategy · Governance · Bioinformatics WG',
+    linkedin: 'https://www.linkedin.com/in/ryan-brinkman-9bb1103/',
+  },
+  {
+    name: 'Goce Bogdanoski',
+    title: 'Board Member · Vice President',
+    focus: 'Legal · Business Development · Strategy',
+    linkedin: 'https://www.linkedin.com/in/goce-bogdanoski-myprofile/',
+  },
+  {
+    name: 'Kelly Lundsten',
+    title: 'Board Member · Director',
+    focus: 'Research · Product · Annotation',
+    linkedin: 'https://www.linkedin.com/in/kelly-lundsten/',
+  },
+  {
+    name: 'Kamila Czechowska',
+    title: 'Board Member · Director',
+    focus: 'Operations · Collaboration · Outreach',
+    linkedin: 'https://www.linkedin.com/in/kamila-czechowska-phd-9927969/',
+  },
+  {
+    name: 'Jessica Houston',
+    title: 'Board Member · Director',
+    focus: 'Funding · Donor Relations',
+    linkedin: 'https://www.linkedin.com/in/jessica-p-houston-81736114/',
+  },
+  {
+    name: 'Mario Roederer',
+    title: 'Independent Director',
+    focus: 'Scientific Leadership · Oversight',
+    linkedin: 'https://www.linkedin.com/in/mario-roederer-a957a946/',
+  },
+]
+
 /** Brand colors (scientific blue / teal palette). */
 export const BRAND = {
   primary: '#1a4f8b',
