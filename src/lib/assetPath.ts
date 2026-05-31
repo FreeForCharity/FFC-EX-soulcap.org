@@ -1,10 +1,11 @@
 /**
  * Helper function to construct asset paths that work with GitHub Pages basePath
  *
- * When deployed to GitHub Pages at freeforcharity.github.io/FFC_Single_Page_Template/,
- * all assets need to be prefixed with the repository name.
+ * When deployed to GitHub Pages at freeforcharity.github.io/FFC-EX-soulcap.org/,
+ * all assets need to be prefixed with the repository name (the basePath).
  *
- * For the custom domain (ffcworkingsite1.org), no basePath is needed.
+ * When a custom subdomain/apex domain is configured later (via a CNAME), the
+ * basePath should be emptied so assets resolve at the domain root.
  *
  * @param path - The asset path starting with /
  * @returns The full asset path including basePath if configured

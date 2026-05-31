@@ -1,43 +1,18 @@
 'use client'
 
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { FiMenu } from 'react-icons/fi'
-import { LiaSearchSolid } from 'react-icons/lia'
 import { RxCross2 } from 'react-icons/rx'
 import { motion, AnimatePresence } from 'framer-motion'
-
-interface MenuItem {
-  label: string
-  path: string
-}
-
-const SCROLL_OFFSET = 100
+import { NAV, EXTERNAL, SITE, BRAND } from '@/lib/soulcap'
+import { assetPath } from '@/lib/assetPath'
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [activeSection, setActiveSection] = useState<string>('')
-
-  const menuItems: MenuItem[] = useMemo(
-    () => [
-      { label: 'Home', path: '/#hero' },
-      { label: 'Mission', path: '/#mission' },
-      { label: 'Programs', path: '/#programs' },
-      { label: 'Volunteer', path: '/#volunteer' },
-      { label: 'Donate', path: '/#donate' },
-      { label: 'FAQ', path: '/#faq' },
-      { label: 'Team', path: '/#team' },
-    ],
-    []
-  )
-
-  const sections = useMemo(
-    () =>
-      menuItems.map((item) => item.path.replace('/#', '')).filter((section) => section !== 'hero'),
-    [menuItems]
-  )
+  const pathname = usePathname()
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -45,134 +20,71 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Track active section based on scroll position
-  useEffect(() => {
-    const handleScrollSpy = () => {
-      const scrollPosition = window.scrollY + SCROLL_OFFSET
-
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId)
-        if (element) {
-          const offsetTop = element.offsetTop
-          const offsetBottom = offsetTop + element.offsetHeight
-          if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
-            setActiveSection(sectionId)
-            return
-          }
-        }
-      }
-      // If at the top, set home as active
-      if (window.scrollY < SCROLL_OFFSET) {
-        setActiveSection('')
-      }
-    }
-
-    window.addEventListener('scroll', handleScrollSpy)
-    return () => window.removeEventListener('scroll', handleScrollSpy)
-  }, [sections])
-
-  const handleSearchToggle = () => setIsSearchOpen(!isSearchOpen)
-  const handleLinkClick = () => {
-    setIsMobileMenuOpen(false)
-  }
+  const handleLinkClick = () => setIsMobileMenuOpen(false)
 
   const isActive = (path: string) => {
-    const sectionId = path.replace('/#', '')
-    if (sectionId === 'hero') return activeSection === ''
-    return activeSection === sectionId
+    if (path === '/') return pathname === '/'
+    return pathname === path || pathname?.startsWith(`${path}/`)
   }
 
   return (
     <header
       id="header"
       className={`w-full bg-white shadow-sm fixed top-0 left-0 right-0 z-50 flex items-center transition-all duration-300 ${
-        isScrolled ? 'h-[55px]' : 'h-[80px]'
+        isScrolled ? 'h-[64px]' : 'h-[84px]'
       }`}
     >
-      <div className="w-full">
-        <div className="mx-auto max-w-[1080px]">
-          <div className="flex items-center px-2 transition-all duration-300">
-            {/* Logo */}
-            <div
-              className={`transition-all duration-300 ${isScrolled ? 'w-[110px]' : 'w-[150px]'}`}
-            >
-              <Link href="/" onClick={handleLinkClick} className="block">
-                <img
-                  src="https://freeforcharity.org/wp-content/uploads/2024/04/Screenshot_145.png"
-                  alt="Free For Charity"
-                  className={`transition-all duration-300 ${isScrolled ? 'h-7' : 'h-11'}`}
-                />
-              </Link>
-            </div>
+      <div className="mx-auto w-full max-w-[1180px] px-4">
+        <div className="flex items-center justify-between gap-4">
+          {/* Logo */}
+          <Link href="/" onClick={handleLinkClick} className="flex items-center gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={assetPath('/Images/soulcap/soulcap-logo.png')}
+              alt={`${SITE.name} logo`}
+              className={`transition-all duration-300 ${isScrolled ? 'h-9 w-9' : 'h-12 w-12'}`}
+            />
+            <span className="font-semibold tracking-wide" style={{ color: BRAND.primary }}>
+              {SITE.name}
+            </span>
+          </Link>
 
-            {/* Menu or Search */}
-            {!isSearchOpen ? (
-              <div className="flex items-center justify-end sm:pl-[50px] md:pl-[70px] w-full">
-                {/* Desktop Menu */}
-                <nav className="hidden lg:block transition-all duration-300">
-                  <ul className="flex items-center space-x-[1px] font-navbar font-[600]">
-                    {menuItems.map((item, index) => (
-                      <li key={index} className="relative py-6">
-                        <Link
-                          href={item.path}
-                          onClick={handleLinkClick}
-                          className={`flex items-center px-3 py-2 text-[14px] transition-colors duration-200 ${
-                            isActive(item.path)
-                              ? 'text-blue-600'
-                              : 'text-gray-600 hover:text-gray-500'
-                          }`}
-                        >
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </nav>
-
-                {/* Search Icon */}
-                <div className="hidden lg:flex items-center">
-                  <button
-                    onClick={handleSearchToggle}
-                    className="p-2 text-gray-600 hover:text-blue-600 transition-colors"
-                    aria-label="Search"
+          {/* Desktop Menu */}
+          <nav className="hidden lg:block">
+            <ul className="flex items-center gap-1">
+              {NAV.map((item) => (
+                <li key={item.path}>
+                  <Link
+                    href={item.path}
+                    className="px-3 py-2 text-[14px] font-semibold transition-colors duration-200"
+                    style={{ color: isActive(item.path) ? BRAND.primary : '#4b5563' }}
                   >
-                    <LiaSearchSolid className="h-5 w-5 cursor-pointer" />
-                  </button>
-                </div>
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <a
+                  href={EXTERNAL.donate}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-2 rounded-full px-5 py-2 text-[14px] font-semibold text-white transition-opacity hover:opacity-90"
+                  style={{ backgroundColor: BRAND.accent }}
+                >
+                  Donate now
+                </a>
+              </li>
+            </ul>
+          </nav>
 
-                {/* Mobile Menu Button */}
-                <button
-                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                  className="lg:hidden p-2 text-gray-600 hover:text-blue-600"
-                  aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-                >
-                  {isMobileMenuOpen ? (
-                    <RxCross2 className="h-6 w-6" />
-                  ) : (
-                    <FiMenu className="h-6 w-6" />
-                  )}
-                </button>
-              </div>
-            ) : (
-              // Search Input
-              <div className="w-full max-w-[750px] ml-auto flex items-center justify-between transition-all duration-300">
-                <input
-                  type="text"
-                  placeholder="Search..."
-                  className="w-full px-4 py-2 focus:outline-none"
-                  autoFocus
-                  aria-label="Search input"
-                />
-                <button
-                  onClick={handleSearchToggle}
-                  className="ml-2 p-2 text-gray-600"
-                  aria-label="Close search"
-                >
-                  <RxCross2 className="cursor-pointer h-5 w-5" />
-                </button>
-              </div>
-            )}
-          </div>
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden p-2 text-gray-600"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {isMobileMenuOpen ? <RxCross2 className="h-6 w-6" /> : <FiMenu className="h-6 w-6" />}
+          </button>
         </div>
       </div>
 
@@ -185,28 +97,41 @@ const Header: React.FC = () => {
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className={`lg:hidden absolute left-0 w-full overflow-hidden z-40 ${
-              isScrolled ? 'top-[53px]' : 'top-[77px]'
+              isScrolled ? 'top-[64px]' : 'top-[84px]'
             }`}
           >
             <div
-              className={`max-w-[700px] mx-auto px-6 py-4 bg-white border-t-[3px] border-[#2EA3F2] shadow-[0_2px_5px_rgba(0,0,0,0.1)] max-h-[80vh] overflow-auto`}
+              className="mx-auto max-w-[700px] bg-white px-6 py-4 shadow-[0_2px_5px_rgba(0,0,0,0.1)] max-h-[80vh] overflow-auto border-t-[3px]"
+              style={{ borderColor: BRAND.accent }}
             >
               <ul className="space-y-2">
-                {menuItems.map((item, index) => (
-                  <li key={index}>
+                {NAV.map((item) => (
+                  <li key={item.path}>
                     <Link
                       href={item.path}
                       onClick={handleLinkClick}
-                      className={`block px-4 py-2 rounded-lg text-sm font-[600] ${
-                        isActive(item.path)
-                          ? 'bg-blue-50 text-blue-600'
-                          : 'text-gray-700 hover:bg-gray-100'
-                      }`}
+                      className="block rounded-lg px-4 py-2 text-sm font-semibold"
+                      style={{
+                        color: isActive(item.path) ? BRAND.primary : '#374151',
+                        backgroundColor: isActive(item.path) ? '#eaf2fb' : 'transparent',
+                      }}
                     >
                       {item.label}
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <a
+                    href={EXTERNAL.donate}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={handleLinkClick}
+                    className="block rounded-lg px-4 py-2 text-center text-sm font-semibold text-white"
+                    style={{ backgroundColor: BRAND.accent }}
+                  >
+                    Donate now
+                  </a>
+                </li>
               </ul>
             </div>
           </motion.div>

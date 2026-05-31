@@ -19,21 +19,22 @@ import {
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || ''
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://ffcworkingsite1.org'),
+  metadataBase: new URL('https://freeforcharity.github.io/FFC-EX-soulcap.org'),
   title: {
-    default: 'Free For Charity | Reduce Costs, Increase Impact',
-    template: '%s | Free For Charity',
+    default: 'SOULCAP | Transforming Healthcare Through Innovative Cell Analysis',
+    template: '%s | SOULCAP',
   },
   description:
-    'Free For Charity connects students, professionals, and businesses with nonprofits to reduce costs and increase revenues—putting more resources back into their missions.',
+    'SOULCAP Foundation is a global 501(c)(3) non-profit building a universal standard for immune cell identification and annotation in cytometry — advancing open, FAIR, and AI-ready data.',
   keywords: [
+    'SOULCAP',
+    'cytometry',
+    'immune cell annotation',
+    'flow cytometry',
+    'FAIR data',
+    'bioinformatics',
+    'cell analysis',
     'nonprofit',
-    'charity',
-    'volunteer',
-    'donate',
-    'free hosting',
-    'domains',
-    'Microsoft 365',
   ],
   robots: {
     index: true,
@@ -51,26 +52,24 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: 'https://ffcworkingsite1.org/',
-    siteName: 'Free For Charity',
-    title: 'Free For Charity | Reduce Costs, Increase Impact',
+    url: 'https://freeforcharity.github.io/FFC-EX-soulcap.org/',
+    siteName: 'SOULCAP',
+    title: 'SOULCAP | Transforming Healthcare Through Innovative Cell Analysis',
     description:
-      'Connecting students, professionals, and businesses with nonprofits to reduce costs and increase revenues.',
+      'A global standard for immune cell identification and annotation — advancing open, FAIR, and AI-ready cytometry data.',
     images: [
       {
         url: '/web-app-manifest-512x512.png',
         width: 512,
         height: 512,
-        alt: 'Free For Charity',
+        alt: 'SOULCAP',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@freeforcharity',
-    title: 'Free For Charity | Reduce Costs, Increase Impact',
-    description:
-      'Connecting students, professionals, and businesses with nonprofits to reduce costs and increase revenues.',
+    title: 'SOULCAP | Transforming Healthcare Through Innovative Cell Analysis',
+    description: 'A global standard for immune cell identification and annotation in cytometry.',
     images: ['/web-app-manifest-512x512.png'],
   },
   icons: {
@@ -92,19 +91,16 @@ export default function RootLayout({
       <head>
         {/* Preconnect to external domains for faster resource loading */}
         <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://ffcsites.org" />
-        <link rel="preconnect" href="https://www.zeffy.com" />
-        <link rel="preconnect" href="https://widgets.guidestar.org" />
+        <link rel="preconnect" href="https://checkout.square.site" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://ffcsites.org" />
-        <link rel="dns-prefetch" href="https://www.zeffy.com" />
-        <link rel="dns-prefetch" href="https://www.idealist.org" />
+        <link rel="dns-prefetch" href="https://checkout.square.site" />
+        <link rel="dns-prefetch" href="https://calendar.google.com" />
 
         {/* Preload critical LCP image */}
         <link
           rel="preload"
           as="image"
-          href={`${basePath}/Images/figma-hero-img.webp`}
+          href={`${basePath}/Images/soulcap/home-hero.png`}
           fetchPriority="high"
         />
 

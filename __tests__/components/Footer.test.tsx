@@ -13,26 +13,25 @@ describe('Footer component', () => {
     expect(footer).toBeInTheDocument()
   })
 
-  it('should display Endorsements section', () => {
+  it('should display the SOULCAP brand heading', () => {
     render(<Footer />)
-    expect(screen.getByText('Endorsements')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'SOULCAP' })).toBeInTheDocument()
   })
 
-  it('should display Quick Links section', () => {
+  it('should display the Explore section', () => {
     render(<Footer />)
-    expect(screen.getByText('Quick Links')).toBeInTheDocument()
+    expect(screen.getByText('Explore')).toBeInTheDocument()
   })
 
-  it('should display Contact Us section with contact information', () => {
+  it('should display the Policies section', () => {
     render(<Footer />)
-    expect(screen.getByText('Contact Us')).toBeInTheDocument()
+    expect(screen.getByText('Policies')).toBeInTheDocument()
   })
 
   it('should have social media links', () => {
     render(<Footer />)
-    // Check for social media links by their aria-labels or visible text
-    const links = screen.getAllByRole('link')
-    expect(links.length).toBeGreaterThan(0)
+    expect(screen.getByLabelText('LinkedIn')).toBeInTheDocument()
+    expect(screen.getByLabelText('YouTube')).toBeInTheDocument()
   })
 
   it('should display the current year in copyright', () => {
@@ -41,18 +40,11 @@ describe('Footer component', () => {
     expect(screen.getByText(new RegExp(currentYear.toString()))).toBeInTheDocument()
   })
 
-  it('should have GuideStar profile link', () => {
+  it('should link to the privacy policy', () => {
     render(<Footer />)
-    const guidestarLink = screen.getByText(/GuideStar Profile/i)
-    expect(guidestarLink).toBeInTheDocument()
-  })
-
-  it('should have email contact link', () => {
-    render(<Footer />)
-    // Look for email link
     const links = screen.getAllByRole('link')
-    const emailLink = links.find((link) => link.getAttribute('href')?.includes('mailto:'))
-    expect(emailLink).toBeDefined()
+    const privacy = links.find((link) => link.getAttribute('href') === '/privacy-policy')
+    expect(privacy).toBeDefined()
   })
 
   it('should not have accessibility violations', async () => {
