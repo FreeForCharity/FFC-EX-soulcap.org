@@ -2,6 +2,7 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import { axe, toHaveNoViolations } from 'jest-axe'
 import Header from '../../src/components/header'
+import { NAV } from '../../src/lib/soulcap'
 
 // Extend Jest matchers
 expect.extend(toHaveNoViolations)
@@ -30,37 +31,28 @@ describe('Header component', () => {
     expect(screen.getByRole('banner')).toBeInTheDocument()
   })
 
-  it('should display the Free For Charity logo', () => {
+  it('should display the SOULCAP logo', () => {
     render(<Header />)
-    // Check for logo image with alt text
-    expect(screen.getByAltText('Free For Charity')).toBeInTheDocument()
+    expect(screen.getByAltText('SOULCAP logo')).toBeInTheDocument()
   })
 
-  it('should display Home navigation link', () => {
+  it('should display the primary navigation links', () => {
     render(<Header />)
-    // Home link should always be present in navigation
-    expect(screen.getByText('Home')).toBeInTheDocument()
+    // Each NAV item appears in both desktop and mobile menus.
+    NAV.forEach((item) => {
+      expect(screen.getAllByText(item.label).length).toBeGreaterThan(0)
+    })
   })
 
-  it('should have navigation links', () => {
+  it('should have a Donate now call to action', () => {
     render(<Header />)
-    // Check that navigation has at least some links
-    const links = screen.getAllByRole('link')
-    expect(links.length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Donate now/i).length).toBeGreaterThan(0)
   })
 
   it('should have a mobile menu button', () => {
     render(<Header />)
-    // Look for the menu icon button
     const buttons = screen.getAllByRole('button')
     expect(buttons.length).toBeGreaterThan(0)
-  })
-
-  it('should have search functionality button', () => {
-    render(<Header />)
-    const buttons = screen.getAllByRole('button')
-    // Should have at least menu and search buttons
-    expect(buttons.length).toBeGreaterThanOrEqual(2)
   })
 
   it('should not have accessibility violations', async () => {
