@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { LegalArticle, LegalHeading } from '@/components/content-page'
-import { HUBSPOT } from '@/lib/soulcap'
+import { SITE } from '@/lib/soulcap'
 
 export const metadata: Metadata = {
   title: 'Cookie Policy',
@@ -32,8 +32,8 @@ export default function CookiePolicy() {
           only after you consent, helping us understand how the site is used.
         </li>
         <li>
-          <strong>Third-party.</strong> Embedded services such as HubSpot (contact form), Google
-          Calendar (events), and YouTube may set their own cookies when used.
+          <strong>Third-party.</strong> Embedded services such as Google Calendar (events) and
+          YouTube may set their own cookies when used.
         </li>
       </ul>
 
@@ -46,7 +46,7 @@ export default function CookiePolicy() {
       </p>
 
       <LegalHeading>Contact</LegalHeading>
-      <p>Questions about this policy? Email {HUBSPOT.fallbackEmail}.</p>
+      <p>Questions about this policy? Email {SITE.email}.</p>
     </LegalArticle>
   )
 }

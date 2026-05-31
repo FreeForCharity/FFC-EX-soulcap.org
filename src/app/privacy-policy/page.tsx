@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { LegalArticle, LegalHeading } from '@/components/content-page'
-import { SITE, HUBSPOT } from '@/lib/soulcap'
+import { SITE } from '@/lib/soulcap'
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -19,15 +19,15 @@ export default function PrivacyPolicy() {
       <LegalHeading>Who we are</LegalHeading>
       <p>
         SOULCAP Foundation is a 501(c)(3) non-profit organization. Postal address: {SITE.address}.
-        For privacy questions, contact {HUBSPOT.fallbackEmail}.
+        For privacy questions, contact {SITE.email}.
       </p>
 
       <LegalHeading>Information we collect</LegalHeading>
       <ul className="list-disc space-y-2 pl-6">
         <li>
-          <strong>Contact form (HubSpot).</strong> When you submit our contact form we collect the
-          information you provide (such as name, institution, email, inquiry type, and message).
-          This is processed by HubSpot on our behalf.
+          <strong>Email enquiries.</strong> When you email us (e.g. via the address on our Contact
+          page), we receive whatever information you include — typically your name, institution, and
+          message — and use it to respond.
         </li>
         <li>
           <strong>Donations (Square).</strong> Donations are processed by Square via a hosted
@@ -61,14 +61,14 @@ export default function PrivacyPolicy() {
       <LegalHeading>Sharing your information</LegalHeading>
       <p>
         We do not sell your personal information. We share it only with service providers that help
-        us operate (such as HubSpot, Square, and Google), or where required by law.
+        us operate (such as Square and Google), or where required by law.
       </p>
 
       <LegalHeading>Your rights</LegalHeading>
       <p>
         Depending on your location, you may have rights to access, correct, delete, or restrict
         processing of your personal data, and to withdraw consent. To exercise these rights, contact{' '}
-        {HUBSPOT.fallbackEmail}.
+        {SITE.email}.
       </p>
 
       <LegalHeading>Children&apos;s privacy</LegalHeading>
@@ -86,7 +86,7 @@ export default function PrivacyPolicy() {
       <LegalHeading>Changes &amp; contact</LegalHeading>
       <p>
         We may update this policy and will post changes here with a new effective date. Questions?
-        Email {HUBSPOT.fallbackEmail}.
+        Email {SITE.email}.
       </p>
     </LegalArticle>
   )

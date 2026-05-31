@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { LegalArticle, LegalHeading } from '@/components/content-page'
-import { SITE, EXTERNAL, HUBSPOT } from '@/lib/soulcap'
+import { SITE, EXTERNAL } from '@/lib/soulcap'
 
 export const metadata: Metadata = {
   title: 'Donation Policy',
@@ -43,12 +43,12 @@ export default function DonationPolicy() {
       <LegalHeading>Refunds</LegalHeading>
       <p>
         Donations are generally non-refundable. If you believe a donation was made in error or an
-        incorrect amount was charged, contact us promptly at {HUBSPOT.fallbackEmail} and we will
-        review the request.
+        incorrect amount was charged, contact us promptly at {SITE.email} and we will review the
+        request.
       </p>
 
       <LegalHeading>Contact</LegalHeading>
-      <p>Questions about donations? Email {HUBSPOT.fallbackEmail}.</p>
+      <p>Questions about donations? Email {SITE.email}.</p>
     </LegalArticle>
   )
 }

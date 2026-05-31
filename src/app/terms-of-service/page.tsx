@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { LegalArticle, LegalHeading } from '@/components/content-page'
-import { SITE, HUBSPOT } from '@/lib/soulcap'
+import { SITE } from '@/lib/soulcap'
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
@@ -44,8 +44,8 @@ export default function TermsOfService() {
 
       <LegalHeading>Third-party services &amp; links</LegalHeading>
       <p>
-        The site integrates and links to third-party services (e.g., HubSpot, Square, Google,
-        LinkedIn, YouTube). We are not responsible for the content or practices of third parties.
+        The site integrates and links to third-party services (e.g., Square, Google, LinkedIn,
+        YouTube). We are not responsible for the content or practices of third parties.
       </p>
 
       <LegalHeading>Disclaimer &amp; limitation of liability</LegalHeading>
@@ -57,7 +57,7 @@ export default function TermsOfService() {
       <LegalHeading>Changes &amp; contact</LegalHeading>
       <p>
         We may update these terms and will post changes here with a new effective date. Questions?
-        Email {HUBSPOT.fallbackEmail}.
+        Email {SITE.email}.
       </p>
     </LegalArticle>
   )
