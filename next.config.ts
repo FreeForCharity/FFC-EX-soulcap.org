@@ -2,6 +2,9 @@ import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   output: 'export',
+  // Emit directory-style routes (/about/index.html) so URLs work with a
+  // trailing slash and match the source site's structure (soulcap.org/about/).
+  trailingSlash: true,
   // Images configuration
   images: {
     // This allows all images, local or external, to load without optimization
