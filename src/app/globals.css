@@ -137,7 +137,7 @@ body {
   animation: fadeRight 1s cubic-bezier(0.77, 0, 0.175, 1) 1;
 }
 
-/* Utilities aligned to Figma */
+/* Layout utilities */
 .ffc-container {
   max-width: var(--container);
   margin-inline: auto;
