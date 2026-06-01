@@ -31,13 +31,17 @@ test.describe('Footer Social Links', () => {
       'aria-label',
       testConfig.socialLinks.youtube.ariaLabel
     )
+
+    const githubLink = page.locator(`footer a[href*="${testConfig.socialLinks.github.url}"]`)
+    await expect(githubLink).toBeVisible()
+    await expect(githubLink).toHaveAttribute('aria-label', testConfig.socialLinks.github.ariaLabel)
   })
 
-  test('should have exactly 2 social media icons', async ({ page }) => {
+  test('should have exactly 3 social media icons', async ({ page }) => {
     await page.goto('/')
     const socialMediaLinks = page.locator(
-      `footer a[aria-label="${testConfig.socialLinks.linkedin.ariaLabel}"], footer a[aria-label="${testConfig.socialLinks.youtube.ariaLabel}"]`
+      `footer a[aria-label="${testConfig.socialLinks.linkedin.ariaLabel}"], footer a[aria-label="${testConfig.socialLinks.youtube.ariaLabel}"], footer a[aria-label="${testConfig.socialLinks.github.ariaLabel}"]`
     )
-    await expect(socialMediaLinks).toHaveCount(2)
+    await expect(socialMediaLinks).toHaveCount(3)
   })
 })

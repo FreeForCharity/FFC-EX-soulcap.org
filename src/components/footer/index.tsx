@@ -2,7 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { FaLinkedinIn, FaYoutube } from 'react-icons/fa'
+import { FaLinkedinIn, FaYoutube, FaGithub } from 'react-icons/fa'
 import { NAV, LEGAL_LINKS, EXTERNAL, SITE, BRAND } from '@/lib/soulcap'
 
 const Footer: React.FC = () => {
@@ -11,6 +11,7 @@ const Footer: React.FC = () => {
   const socialLinks = [
     { icon: FaLinkedinIn, href: EXTERNAL.linkedin, label: 'LinkedIn' },
     { icon: FaYoutube, href: EXTERNAL.youtube, label: 'YouTube' },
+    { icon: FaGithub, href: EXTERNAL.github, label: 'GitHub' },
   ]
 
   return (
