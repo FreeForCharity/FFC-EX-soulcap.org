@@ -63,6 +63,16 @@ export default function ContactPage() {
             style={linkStyle}
           >
             YouTube
+          </a>{' '}
+          ·{' '}
+          <a
+            href={EXTERNAL.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium"
+            style={linkStyle}
+          >
+            GitHub
           </a>
         </p>
       </Section>

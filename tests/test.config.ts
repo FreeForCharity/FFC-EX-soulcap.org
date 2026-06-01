@@ -14,12 +14,16 @@ export const testConfig = {
    */
   socialLinks: {
     linkedin: {
-      url: 'linkedin.com/company/soulcap',
+      url: 'linkedin.com/company/soulcapfoundation',
       ariaLabel: 'LinkedIn',
     },
     youtube: {
       url: 'youtube.com/@initiativesoulcap',
       ariaLabel: 'YouTube',
+    },
+    github: {
+      url: 'github.com/FreeForCharity/FFC-EX-soulcap.org',
+      ariaLabel: 'GitHub',
     },
   },
 

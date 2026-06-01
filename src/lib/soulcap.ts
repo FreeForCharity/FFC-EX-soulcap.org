@@ -36,9 +36,9 @@ export const EXTERNAL = {
   googleCalendarEmbed:
     'https://calendar.google.com/calendar/embed?src=calendar%40soulcap.org&ctz=America%2FVancouver',
   /** Social profiles. */
-  linkedin: 'https://www.linkedin.com/company/soulcap/',
-  linkedinFoundation: 'https://www.linkedin.com/company/soulcapfoundation/',
+  linkedin: 'https://www.linkedin.com/company/soulcapfoundation/',
   youtube: 'https://www.youtube.com/@initiativesoulcap',
+  github: 'https://github.com/FreeForCharity/FFC-EX-soulcap.org',
 } as const
 
 export interface NavItem {
