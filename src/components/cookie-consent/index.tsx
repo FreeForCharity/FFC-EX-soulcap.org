@@ -4,7 +4,10 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 
 // Environment variables for tracking IDs (replace with actual values)
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX'
+// Note: Google Analytics (GA4) is intentionally NOT loaded here. It fires only
+// via the Google Tag Manager container (see src/components/google-tag-manager),
+// gated by the consent signal this component pushes to the dataLayer. Injecting
+// gtag.js here as well would double-count every consenting visitor.
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || 'XXXXXXXXXXXXXXX'
 const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || 'XXXXXXXXXX'
 
@@ -42,32 +45,6 @@ export default function CookieConsent() {
     useState<CookiePreferences>(preferences)
   const modalRef = useRef<HTMLDivElement>(null)
   const previousFocusRef = useRef<HTMLElement | null>(null)
-
-  const loadGoogleAnalytics = useCallback(() => {
-    if (
-      typeof window !== 'undefined' &&
-      !document.querySelector('script[src*="googletagmanager.com/gtag"]')
-    ) {
-      const gaScript = document.createElement('script')
-      gaScript.async = true
-      gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
-      document.head.appendChild(gaScript)
-
-      const gaConfigScript = document.createElement('script')
-      const secureFlag =
-        typeof window !== 'undefined' && window.location.protocol === 'https:' ? ';Secure' : ''
-      gaConfigScript.textContent = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${GA_MEASUREMENT_ID}', {
-          'anonymize_ip': true,
-          'cookie_flags': 'SameSite=Lax${secureFlag}'
-        });
-      `
-      document.head.appendChild(gaConfigScript)
-    }
-  }, [])
 
   const loadMetaPixel = useCallback(() => {
     if (typeof window !== 'undefined' && !document.querySelector('script[src*="fbevents.js"]')) {
@@ -166,16 +143,17 @@ export default function CookieConsent() {
         })
       }
 
-      // Load scripts based on consent independently
+      // Load scripts based on consent independently.
+      // Google Analytics is deliberately absent here: GA4 loads only through the
+      // GTM container, which reads the analytics_consent signal pushed above.
       if (prefs.analytics) {
-        loadGoogleAnalytics()
         loadMicrosoftClarity()
       }
       if (prefs.marketing) {
         loadMetaPixel()
       }
     },
-    [deleteAnalyticsCookies, loadGoogleAnalytics, loadMetaPixel, loadMicrosoftClarity]
+    [deleteAnalyticsCookies, loadMetaPixel, loadMicrosoftClarity]
   )
 
   // Helper to load preferences from localStorage and update state
@@ -184,6 +162,18 @@ export default function CookieConsent() {
       try {
         const consent = localStorage.getItem('cookie-consent')
         if (!consent) {
+          // First visit, no stored choice yet: push an explicit default-deny
+          // consent signal so GTM has a denied baseline before the visitor
+          // chooses. Functional stays granted (necessary/functional are always on).
+          if (showBannerIfMissing && typeof window !== 'undefined') {
+            window.dataLayer = window.dataLayer || []
+            window.dataLayer.push({
+              event: 'consent_update',
+              functional_consent: 'granted',
+              analytics_consent: 'denied',
+              marketing_consent: 'denied',
+            })
+          }
           if (showBannerIfMissing) setShowBanner(true)
           return
         }
