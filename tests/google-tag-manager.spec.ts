@@ -107,15 +107,24 @@ test.describe('Google Tag Manager Integration', () => {
     // Accept all cookies
     await page.getByRole('button', { name: 'Accept All' }).click()
 
-    // Verify dataLayer receives consent update event
-    const hasConsentEvent = await page.evaluate(() => {
+    // Verify dataLayer receives a real Google Consent Mode update granting
+    // analytics_storage. GA4 loads only via GTM and honours this natively; the
+    // banner no longer injects gtag.js itself (that double-counted visitors).
+    const hasConsentUpdate = await page.evaluate(() => {
       if (typeof window.dataLayer === 'undefined') return false
 
-      // Check if dataLayer has any consent-related events
-      return window.dataLayer.some((item: { event?: string }) => item.event === 'consent_update')
+      // gtag('consent','update',{...}) is pushed as an arguments array:
+      // ['consent','update',{ analytics_storage: 'granted', ... }].
+      return (window.dataLayer as unknown[]).some((item) => {
+        if (!Array.isArray(item)) return false
+        const settings = item[2] as { analytics_storage?: string } | undefined
+        return (
+          item[0] === 'consent' && item[1] === 'update' && settings?.analytics_storage === 'granted'
+        )
+      })
     })
 
-    expect(hasConsentEvent).toBe(true)
+    expect(hasConsentUpdate).toBe(true)
   })
 })
 
