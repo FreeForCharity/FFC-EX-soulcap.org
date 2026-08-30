@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicy() {
   return (
-    <LegalArticle title="Privacy Policy" effectiveDate="2026-05-31">
+    <LegalArticle title="Privacy Policy" effectiveDate="2026-08-30">
       <p>
         {SITE.legalName} (&quot;SOULCAP&quot;, &quot;we&quot;, &quot;us&quot;) respects your
         privacy. This policy explains what personal information we collect through this website, how
@@ -35,9 +35,14 @@ export default function PrivacyPolicy() {
           payment information under its own privacy policy.
         </li>
         <li>
-          <strong>Analytics &amp; cookies.</strong> With your consent, we use Google Tag Manager and
-          associated analytics to understand site usage. See our Cookie Policy for details and
-          controls.
+          <strong>Analytics &amp; cookies.</strong> We use Google Tag Manager and associated
+          analytics, governed by Google Consent Mode. In the European Economic Area, the United
+          Kingdom, and Switzerland, Google&apos;s tags set no cookies and read no identifiers until
+          you accept through the cookie consent banner — until then only aggregate, cookieless
+          measurement takes place. Everywhere else, analytics cookies are set from your first visit,
+          and you can turn them off at any time via the Cookie Preferences link in the footer. Which
+          rule applies to your visit is determined by Google from your IP address at the time of
+          your visit; IP geolocation is approximate. See our Cookie Policy for details and controls.
         </li>
         <li>
           <strong>Embedded content.</strong> Pages may embed third-party content (e.g., a Google
@@ -69,6 +74,76 @@ export default function PrivacyPolicy() {
         Depending on your location, you may have rights to access, correct, delete, or restrict
         processing of your personal data, and to withdraw consent. To exercise these rights, contact{' '}
         {SITE.email}.
+      </p>
+
+      <LegalHeading>Your rights in the EU, UK, and EEA (GDPR)</LegalHeading>
+      <p>
+        If you visit from the European Union, the United Kingdom, or the wider European Economic
+        Area, the EU General Data Protection Regulation (GDPR) or the UK GDPR applies to our
+        handling of your personal data, and this section supplements the rest of this policy.
+      </p>
+      <p>
+        <strong>How consent works regionally.</strong> We use Google Consent Mode. Whether the
+        permissive or the opt-in default applies to Google&apos;s tags is determined by Google from
+        your IP address at the time of your visit; IP geolocation is approximate. In the EEA, the
+        UK, and Switzerland, Google Analytics runs cookie-free until you accept. Everywhere else,
+        including the United States, analytics cookies are set from your first pageview. Our Cookie
+        Policy describes this in detail.
+      </p>
+      <p>
+        <strong>Legal bases.</strong> We process personal data only on these bases: consent (in the
+        EEA, the UK, and Switzerland, Google&apos;s tags set no cookies and read no identifiers
+        until you accept through the cookie consent banner; you can withdraw consent at any time via
+        the Cookie Preferences link in the footer, after which this site deletes the tracking
+        cookies it set and Google&apos;s tags return to the cookieless state); legitimate interests
+        (operating, securing, and improving this website, balanced against your rights); and legal
+        obligation (where processing is required to comply with applicable law).
+      </p>
+      <p>
+        <strong>Your rights.</strong> You have the right to: access the personal data we hold about
+        you; have inaccurate data rectified; have your data erased; restrict or object to
+        processing; receive your data in a portable format; and withdraw any consent you have given,
+        at any time, without affecting the lawfulness of processing before withdrawal. Contact{' '}
+        {SITE.email} to exercise any of these rights; we will respond within the time limits the
+        GDPR sets. You also have the right to lodge a complaint with your national data protection
+        supervisory authority (in the UK, the Information Commissioner&apos;s Office).
+      </p>
+
+      <LegalHeading>Your California privacy rights (CCPA/CPRA)</LegalHeading>
+      <p>
+        If you are a California resident, the California Consumer Privacy Act, as amended by the
+        California Privacy Rights Act (CCPA/CPRA), gives you specific rights, and this section
+        supplements the rest of this policy.
+      </p>
+      <p>
+        <strong>We do not sell or share your personal information.</strong> {SITE.legalName} does
+        not sell personal information, and does not share it for cross-context behavioral
+        advertising, as those terms are defined by California law — and has not done so in the
+        preceding 12 months. We do not knowingly collect or sell the personal information of anyone
+        under 16. We do not collect sensitive personal information beyond what is necessary to
+        provide this website and our services, and we do not use it to infer characteristics about
+        you.
+      </p>
+      <p>
+        <strong>Your rights.</strong> You have the right to: know what personal information we
+        collect, use, and disclose, and to access it; delete personal information we collected from
+        you; correct inaccurate personal information; opt out of any sale or sharing of personal
+        information (not applicable, since we do neither); limit the use of sensitive personal
+        information; and not be discriminated against for exercising any of these rights.
+      </p>
+      <p>
+        <strong>Opt-out preference signals (Global Privacy Control / Do Not Track).</strong> This
+        site does not read or respond to the Global Privacy Control or Do Not Track browser signals.
+        We do not sell or share personal information as defined by the CCPA/CPRA, so there is
+        nothing for those signals to opt out of. Analytics cookies are set automatically for
+        visitors outside the EEA, the UK, and Switzerland; any visitor can turn them off at any time
+        via the Cookie Preferences link in the footer, and we delete the cookies when you do.
+      </p>
+      <p>
+        <strong>Exercising your rights.</strong> Submit a request to {SITE.email}. We will verify
+        your request using information associated with your interactions with us, and you may use an
+        authorized agent to submit a request on your behalf. We will respond within the timeframes
+        California law requires.
       </p>
 
       <LegalHeading>Children&apos;s privacy</LegalHeading>
