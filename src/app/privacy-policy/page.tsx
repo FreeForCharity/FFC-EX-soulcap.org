@@ -86,9 +86,11 @@ export default function PrivacyPolicy() {
         <strong>How consent works regionally.</strong> We use Google Consent Mode. Whether the
         permissive or the opt-in default applies to Google&apos;s tags is determined by Google from
         your IP address at the time of your visit; IP geolocation is approximate. In the EEA, the
-        UK, and Switzerland, Google Analytics runs cookie-free until you accept. Everywhere else,
-        including the United States, analytics cookies are set from your first pageview. Our Cookie
-        Policy describes this in detail.
+        UK, and Switzerland, Google Analytics runs cookie-free until you accept. (Switzerland is
+        included because Google&apos;s consent defaults cover it; Swiss visitors&apos; data is
+        protected by the Swiss FADP rather than the GDPR.) Everywhere else, including the United
+        States, analytics cookies are set from your first pageview. Our Cookie Policy describes this
+        in detail.
       </p>
       <p>
         <strong>Legal bases.</strong> We process personal data only on these bases: consent (in the
