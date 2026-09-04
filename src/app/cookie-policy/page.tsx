@@ -28,14 +28,13 @@ export default function CookiePolicy() {
           choices.
         </li>
         <li>
-          <strong>Analytics (Google Consent Mode).</strong> If you are in the European Economic
-          Area, the United Kingdom, or Switzerland, Google Analytics sets no cookies and collects no
-          identifiers until you accept — it still counts your visit in an aggregate, cookie-free way
-          that cannot be tied back to you. Everywhere else, Google Analytics cookies are set from
-          your first visit, and you can turn them off at any time using the Cookie Preferences link
-          in our footer; we delete the cookies when you do. Which rule applies to your visit is
-          determined by Google from your IP address at the time of your visit; IP geolocation is
-          approximate.
+          <strong>Analytics (Google Consent Mode).</strong> No matter where in the world you are,
+          Google Analytics sets no analytics or advertising cookies and collects no identifiers from
+          your device until you accept — it still counts your visit in an aggregate, cookie-free way
+          that cannot be tied back to you. There is no country in which analytics cookies are set
+          before you choose, and you can turn them off again at any time using the Cookie
+          Preferences link in our footer; we delete the cookies when you do. The same rule applies
+          to every visitor, so nothing depends on where you are.
         </li>
         <li>
           <strong>Third-party.</strong> Embedded services such as Google Calendar (events) and
@@ -55,10 +54,9 @@ export default function CookiePolicy() {
       <p>
         This site does not read or respond to the &quot;Do Not Track&quot; or Global Privacy Control
         browser signals. We do not sell or share personal information as defined by the CCPA/CPRA,
-        so there is nothing for those signals to opt out of. In the EEA, the UK, and Switzerland,
-        analytics cookies stay off until you opt in through the consent banner; everywhere else they
-        are set from your first visit, and you can turn them off at any time via the Cookie
-        Preferences link in the footer — we delete the cookies when you do.
+        so there is nothing for those signals to opt out of. Analytics cookies stay off until you
+        opt in through the consent banner, wherever you are, and you can turn them off again at any
+        time via the Cookie Preferences link in the footer — we delete the cookies when you do.
       </p>
 
       <LegalHeading>Contact</LegalHeading>
