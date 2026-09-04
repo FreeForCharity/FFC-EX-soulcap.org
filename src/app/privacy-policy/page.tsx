@@ -85,11 +85,10 @@ export default function PrivacyPolicy() {
       <p>
         <strong>How consent works, in plain language.</strong> We use Google Consent Mode. The same
         rule applies to every visitor, so nothing depends on where you are. Google Analytics runs
-        cookie-free until you accept, wherever in the world you are. (Switzerland is included
-        because Google&apos;s consent defaults cover it; the data of visitors in Switzerland is
-        protected by Switzerland&apos;s Federal Act on Data Protection (FADP) rather than the GDPR.)
-        There is no country in which analytics cookies are set before you choose. Our Cookie Policy
-        describes this in detail.
+        cookie-free until you accept, wherever in the world you are. (Visitors in Switzerland are
+        protected by Switzerland&apos;s Federal Act on Data Protection (FADP) rather than the GDPR;
+        the treatment described here is the same either way.) There is no country in which analytics
+        cookies are set before you choose. Our Cookie Policy describes this in detail.
       </p>
       <p>
         <strong>Legal bases.</strong> We process personal data only on these bases: consent
