@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function CookiePolicy() {
   return (
-    <LegalArticle title="Cookie Policy" effectiveDate="2026-05-31">
+    <LegalArticle title="Cookie Policy" effectiveDate="2026-08-30">
       <p>
         This policy explains how SOULCAP Foundation uses cookies and similar technologies on this
         website, and how you can control them.
@@ -28,8 +28,13 @@ export default function CookiePolicy() {
           choices.
         </li>
         <li>
-          <strong>Analytics (consent-based).</strong> Google Tag Manager and analytics tags load
-          only after you consent, helping us understand how the site is used.
+          <strong>Analytics (Google Consent Mode).</strong> No matter where in the world you are,
+          Google Analytics sets no analytics or advertising cookies and collects no identifiers from
+          your device until you accept — it still counts your visit in an aggregate, cookie-free way
+          that cannot be tied back to you. There is no country in which analytics cookies are set
+          before you choose, and you can turn them off again at any time using the Cookie
+          Preferences link in our footer; we delete the cookies when you do. The same rule applies
+          to every visitor, so nothing depends on where you are.
         </li>
         <li>
           <strong>Third-party.</strong> Embedded services such as Google Calendar (events) and
@@ -40,9 +45,18 @@ export default function CookiePolicy() {
       <LegalHeading>Managing your choices</LegalHeading>
       <p>
         When you first visit, our cookie-consent banner lets you accept, decline, or customize
-        non-essential cookies. You can change your choice at any time by clearing site data or
-        reopening the cookie preferences. You can also control cookies through your browser
-        settings.
+        non-essential cookies. You can change your mind at any time: the Cookie Preferences link in
+        the footer reopens these choices, and withdrawing consent deletes the analytics and
+        marketing cookies this site set. You can also control cookies through your browser settings.
+      </p>
+
+      <LegalHeading>Do Not Track and Global Privacy Control</LegalHeading>
+      <p>
+        This site does not read or respond to the &quot;Do Not Track&quot; or Global Privacy Control
+        browser signals. We do not sell or share personal information as defined by the CCPA/CPRA,
+        so there is nothing for those signals to opt out of. Analytics cookies stay off until you
+        opt in through the consent banner, wherever you are, and you can turn them off again at any
+        time via the Cookie Preferences link in the footer — we delete the cookies when you do.
       </p>
 
       <LegalHeading>Contact</LegalHeading>
