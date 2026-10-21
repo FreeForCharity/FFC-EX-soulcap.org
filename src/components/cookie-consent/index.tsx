@@ -4,20 +4,26 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 
 // Environment variables for tracking IDs (replace with actual values)
-const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-XXXXXXXXXX'
+// Note: Google Analytics (GA4) is intentionally NOT loaded here. It fires only
+// via the Google Tag Manager container (see src/components/google-tag-manager),
+// gated by the consent signal this component pushes to the dataLayer. Injecting
+// gtag.js here as well would double-count every consenting visitor.
 const META_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || 'XXXXXXXXXXXXXXX'
 const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || 'XXXXXXXXXX'
 
-// Define type for GTM dataLayer events
+// Define type for GTM dataLayer events. Entries are either event objects or the
+// argument arrays produced by gtag(...) calls (e.g. Google Consent Mode updates).
 interface DataLayerEvent {
   event: string
   [key: string]: string | number | boolean | undefined
 }
 
+type DataLayerItem = DataLayerEvent | unknown[]
+
 // Extend Window interface to include dataLayer and openCookiePreferences
 declare global {
   interface Window {
-    dataLayer: DataLayerEvent[]
+    dataLayer: DataLayerItem[]
     openCookiePreferences?: () => void
   }
 }
@@ -42,32 +48,6 @@ export default function CookieConsent() {
     useState<CookiePreferences>(preferences)
   const modalRef = useRef<HTMLDivElement>(null)
   const previousFocusRef = useRef<HTMLElement | null>(null)
-
-  const loadGoogleAnalytics = useCallback(() => {
-    if (
-      typeof window !== 'undefined' &&
-      !document.querySelector('script[src*="googletagmanager.com/gtag"]')
-    ) {
-      const gaScript = document.createElement('script')
-      gaScript.async = true
-      gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`
-      document.head.appendChild(gaScript)
-
-      const gaConfigScript = document.createElement('script')
-      const secureFlag =
-        typeof window !== 'undefined' && window.location.protocol === 'https:' ? ';Secure' : ''
-      gaConfigScript.textContent = `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', '${GA_MEASUREMENT_ID}', {
-          'anonymize_ip': true,
-          'cookie_flags': 'SameSite=Lax${secureFlag}'
-        });
-      `
-      document.head.appendChild(gaConfigScript)
-    }
-  }, [])
 
   const loadMetaPixel = useCallback(() => {
     if (typeof window !== 'undefined' && !document.querySelector('script[src*="fbevents.js"]')) {
@@ -155,27 +135,32 @@ export default function CookieConsent() {
         }
       }
 
-      // Push consent update to GTM dataLayer
+      // Update Google Consent Mode so GA4 (loaded via GTM) natively honours the
+      // visitor's analytics choice. GA4 ignores custom dataLayer keys, so we must
+      // issue a real gtag('consent','update', ...) command. Ad storage stays
+      // denied here; marketing tags load via their own branch below, not GTM ads.
       if (typeof window !== 'undefined') {
-        window.dataLayer = window.dataLayer || []
-        window.dataLayer.push({
-          event: 'consent_update',
-          functional_consent: prefs.functional ? 'granted' : 'denied',
-          analytics_consent: prefs.analytics ? 'granted' : 'denied',
-          marketing_consent: prefs.marketing ? 'granted' : 'denied',
+        const dataLayer = (window.dataLayer = window.dataLayer || [])
+        const gtag = (...args: unknown[]) => dataLayer.push(args)
+        gtag('consent', 'update', {
+          analytics_storage: prefs.analytics ? 'granted' : 'denied',
+          ad_storage: 'denied',
+          ad_user_data: 'denied',
+          ad_personalization: 'denied',
         })
       }
 
-      // Load scripts based on consent independently
+      // Load scripts based on consent independently.
+      // Google Analytics is deliberately absent here: GA4 loads only through the
+      // GTM container, gated by the Consent Mode signal pushed above.
       if (prefs.analytics) {
-        loadGoogleAnalytics()
         loadMicrosoftClarity()
       }
       if (prefs.marketing) {
         loadMetaPixel()
       }
     },
-    [deleteAnalyticsCookies, loadGoogleAnalytics, loadMetaPixel, loadMicrosoftClarity]
+    [deleteAnalyticsCookies, loadMetaPixel, loadMicrosoftClarity]
   )
 
   // Helper to load preferences from localStorage and update state
